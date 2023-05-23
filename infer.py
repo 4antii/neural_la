@@ -29,14 +29,10 @@ model = Squeeze_LSTM(input_s=model_config['input_size'],
 with torch.no_grad():
     for p in tqdm(list(path_to_data.glob('*.wav'))):
         input_audio, sr = torchaudio.load(p)
-        print(input_audio)
-        print('inp', input_audio.dtype)
         params_for_input = params.repeat(input_audio.size()[0], 1)
         out = model.forward(input_audio, params_for_input)
         out = torch.squeeze(out, 1)
-        print(input_audio)
         out_name = f"{p.stem}_processed.wav"
         out_p = out_path / out_name
-        print('oup', out.dtype)
         #soundfile.write(out_p, out.cpu(), samplerate=44100)
         torchaudio.save(out_p, out.cpu(), sample_rate=44100, format='wav', bits_per_sample=32)

@@ -1,0 +1,7 @@
+auraloss==0.3.0
+numpy==1.23.5
+pytorch_lightning==1.9.4
+torch==1.13.1
+torchaudio==0.13.1
+tqdm==4.64.1
+tqdm==4.56.0
